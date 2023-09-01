@@ -13,7 +13,7 @@ int main(void)  {
         for (int i = 1; i < x; i++) {
 
             if (x % i == 0) {
-                soma = soma + i;
+                soma += i;
             }
 
         }
