@@ -35,6 +35,7 @@ int compute_votes(int num_votes,int votes[num_votes],int num_parties,Party parti
     *second_most_voted = parties[1];
 }
 int main(){
+    int votos_validos = 0;
     int num_parties = 0, num_votes = 0;
     scanf("%i", &num_parties);
     double pMost = 0, pSMost = 0;
@@ -50,9 +51,19 @@ int main(){
     for (int c = 0; c < num_votes; c++)
     {
         scanf("%i", &votes[c]);
+        for (int d = 0; d < num_parties; d++){
+            if (votes[c] == parties[d].identifier)
+            {
+                votos_validos += 1;
+            }
+            else
+            {
+                continue;
+            }
+        } 
     }
     compute_votes(num_votes, votes, num_parties, parties, &most_voted, &second_most_voted);
-    double botafogo = most_voted.quantity_of_votes * 100,vasco = num_votes, fluminense = second_most_voted.quantity_of_votes * 100;
+    double botafogo = most_voted.quantity_of_votes * 100,vasco = votos_validos, fluminense = second_most_voted.quantity_of_votes * 100;
     pMost = (botafogo / vasco);
     pSMost = (fluminense / vasco);
     printf("VENCEDOR: %s (%i votos = %.2lf%%)\n", most_voted.party_name, most_voted.quantity_of_votes, pMost);
